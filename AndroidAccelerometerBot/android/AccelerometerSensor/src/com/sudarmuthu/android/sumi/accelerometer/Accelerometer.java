@@ -5,8 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Android accelerometer sensor tutorial
@@ -17,6 +17,11 @@ public class Accelerometer extends Activity implements AccelerometerListener {
 	
 	private static Context CONTEXT;
 	
+	private TextView left;
+	private TextView right;
+	private TextView up;
+	private TextView down;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,13 @@ public class Accelerometer extends Activity implements AccelerometerListener {
         CONTEXT = this;
         
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        
+        left = (TextView) findViewById(R.id.left);
+        right = (TextView) findViewById(R.id.right);
+        up = (TextView) findViewById(R.id.up);
+        down = (TextView) findViewById(R.id.down);
+        
+        hideAllDirections();
     }
 
     protected void onResume() {
@@ -46,20 +58,36 @@ public class Accelerometer extends Activity implements AccelerometerListener {
 		return CONTEXT;
 	}
 
-    /**
-     * onShake callback
-     */
-	public void onShake(float force) {
-		Toast.makeText(this, "Phone shaked : " + force, 1000).show();
-	}
-
 	/**
 	 * onAccelerationChanged callback
 	 */
 	public void onAccelerationChanged(float x, float y, float z) {
-		((TextView) findViewById(R.id.x)).setText(String.valueOf(x));
-		((TextView) findViewById(R.id.y)).setText(String.valueOf(y));
-		((TextView) findViewById(R.id.z)).setText(String.valueOf(z));
+		if (z < 2) {
+			changeDirection(down);
+		} else if (z > 2) {
+			changeDirection(up);
+		}
+		
+		if (y < -2) {
+			changeDirection(left);
+		} else if (y > 2) {
+			changeDirection(right);			
+		}
 	}
     
+	/**
+	 * @param left2
+	 */
+	private void changeDirection(TextView direction) {
+		hideAllDirections();
+		direction.setVisibility(View.VISIBLE);
+	}
+
+	private void hideAllDirections() {
+		left.setVisibility(View.INVISIBLE);
+		right.setVisibility(View.INVISIBLE);
+		up.setVisibility(View.INVISIBLE);
+		down.setVisibility(View.INVISIBLE);		
+	}
+	
 }
