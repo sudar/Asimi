@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -13,14 +15,13 @@ import android.widget.TextView;
  * @author antoine vianey
  * under GPL v3 : http://www.gnu.org/licenses/gpl-3.0.html
  */
-public class Accelerometer extends Activity implements AccelerometerListener {
+public class Accelerometer extends Activity implements BotListener {
 	
 	private static Context CONTEXT;
 	
-	private TextView left;
-	private TextView right;
-	private TextView up;
-	private TextView down;
+	private TextView[] botDirection = new TextView[4];
+
+	private boolean botStarted;
 	
     /** Called when the activity is first created. */
     @Override
@@ -29,23 +30,51 @@ public class Accelerometer extends Activity implements AccelerometerListener {
         setContentView(R.layout.main);
         CONTEXT = this;
         
+        // Start in Landscape mode. TODO make sure it is set properly for Tablets
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         
-        left = (TextView) findViewById(R.id.left);
-        right = (TextView) findViewById(R.id.right);
-        up = (TextView) findViewById(R.id.up);
-        down = (TextView) findViewById(R.id.down);
+        botDirection[0] = (TextView) findViewById(R.id.left);
+        botDirection[1] = (TextView) findViewById(R.id.right);
+        botDirection[2] = (TextView) findViewById(R.id.up);
+        botDirection[3] = (TextView) findViewById(R.id.down);
         
         hideAllDirections();
+        
+        botStarted = false;
+        
+        findViewById(R.id.startBot).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Button button = (Button) v;
+				if (botStarted) {
+					// bot is running, stop it
+					botStarted = false;
+					button.setText(R.string.start);
+					changeBotDirection(BotDirection.STOP);
+		    		AccelerometerManager.stopListening();		    		
+				} else {
+					// bot is not running, start it
+					botStarted = true;
+					button.setText(R.string.stop);
+					changeBotDirection(BotDirection.UP);					
+		    		AccelerometerManager.startListening((BotListener) CONTEXT);					
+				}
+			}
+		});
     }
 
+	@Override
     protected void onResume() {
     	super.onResume();
-    	if (AccelerometerManager.isSupported()) {
-    		AccelerometerManager.startListening(this);
+    	if (botStarted) {
+        	if (AccelerometerManager.isSupported()) {
+        		AccelerometerManager.startListening(this);
+        	}    		
     	}
     }
     
+	@Override
     protected void onDestroy() {
     	super.onDestroy();
     	if (AccelerometerManager.isListening()) {
@@ -53,41 +82,38 @@ public class Accelerometer extends Activity implements AccelerometerListener {
     	}
     	
     }
-	
+
+	/* (non-Javadoc)
+	 * @see com.sudarmuthu.android.sumi.accelerometer.BotListener#onBotDirectionChanged(com.sudarmuthu.android.sumi.accelerometer.BotDirection)
+	 */
+	@Override
+	public void onBotDirectionChanged(BotDirection newDirection) {
+		changeBotDirection(newDirection);
+	}
+
     public static Context getContext() {
 		return CONTEXT;
 	}
 
 	/**
-	 * onAccelerationChanged callback
+	 * Hide all direction textivews
 	 */
-	public void onAccelerationChanged(float x, float y, float z) {
-		if (z < 2) {
-			changeDirection(down);
-		} else if (z > 2) {
-			changeDirection(up);
+	private void hideAllDirections() {
+		for (int i = 0; i < botDirection.length; i++) {
+			botDirection[i].setVisibility(View.INVISIBLE);			
 		}
-		
-		if (y < -2) {
-			changeDirection(left);
-		} else if (y > 2) {
-			changeDirection(right);			
-		}
-	}
-    
-	/**
-	 * @param left2
-	 */
-	private void changeDirection(TextView direction) {
-		hideAllDirections();
-		direction.setVisibility(View.VISIBLE);
 	}
 
-	private void hideAllDirections() {
-		left.setVisibility(View.INVISIBLE);
-		right.setVisibility(View.INVISIBLE);
-		up.setVisibility(View.INVISIBLE);
-		down.setVisibility(View.INVISIBLE);		
+	/**
+	 * Change the direction of the bot
+	 * @param newDirection
+	 */
+	private void changeBotDirection(BotDirection newDirection) {
+		hideAllDirections();
+		if (newDirection != BotDirection.STOP) {
+			botDirection[newDirection.ordinal()].setVisibility(View.VISIBLE);			
+		}
+
+		//TODO: Send request to Bot to change direction
 	}
-	
 }

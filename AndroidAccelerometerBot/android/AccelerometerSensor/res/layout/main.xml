@@ -12,7 +12,7 @@
     
     	<TableRow>
 
-    	<Button android:layout_width="wrap_content" android:id="@+id/button1" android:layout_height="wrap_content" android:text="@string/start"></Button>
+    	<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/start" android:id="@+id/startBot"></Button>
     	</TableRow>    
     </TableLayout>
     

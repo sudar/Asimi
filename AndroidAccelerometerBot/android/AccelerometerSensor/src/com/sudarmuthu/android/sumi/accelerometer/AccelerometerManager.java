@@ -19,12 +19,14 @@ public class AccelerometerManager {
 	private static SensorManager sensorManager;
 	// you could use an OrientationListener array instead
 	// if you plans to use more than one listener
-	private static AccelerometerListener listener;
+	private static BotListener listener;
 	
 	/** indicates whether or not Accelerometer Sensor is supported */
 	private static Boolean supported;
 	/** indicates whether or not Accelerometer Sensor is running */
 	private static boolean running = false;
+	
+	private static BotDirection currentDirection = null; 
 	
 	/**
 	 * Returns true if the manager is listening to orientation changes
@@ -69,7 +71,7 @@ public class AccelerometerManager {
 	 * 			callback for accelerometer events
 	 */
 	public static void startListening(
-			AccelerometerListener accelerometerListener) {
+			BotListener accelerometerListener) {
 		sensorManager = (SensorManager) Accelerometer.getContext().
 				getSystemService(Context.SENSOR_SERVICE);
 		List<Sensor> sensors = sensorManager.getSensorList(
@@ -94,9 +96,22 @@ public class AccelerometerManager {
 	 * 			minimum interval between to shake events
 	 */
 	public static void startListening(
-			AccelerometerListener accelerometerListener, 
+			BotListener accelerometerListener, 
 			int threshold, int interval) {
 		startListening(accelerometerListener);
+	}
+
+	/**
+	 * When the bot's direction is changed
+	 * 
+	 * @param newDirection
+	 */
+	private static void changeDirection(BotDirection newDirection) {
+		if (currentDirection != newDirection) {
+			currentDirection = newDirection;
+    		// trigger change event
+    		listener.onBotDirectionChanged(newDirection);			
+		}
 	}
 
 	/**
@@ -109,17 +124,28 @@ public class AccelerometerManager {
 		private float y = 0;
 		private float z = 0;
 		
-		public void onAccuracyChanged(Sensor sensor, int accuracy) {}
-		
 		public void onSensorChanged(SensorEvent event) {
     		x = event.values[0];
 			y = event.values[1];
 			z = event.values[2];
     		
-    		// trigger change event
-    		listener.onAccelerationChanged(x, y, z);
+			if (z < 2) {
+				changeDirection(BotDirection.DOWN);
+			} else if (z > 2) {
+				changeDirection(BotDirection.UP);
+			}
+			
+			if (y < -2) {
+				changeDirection(BotDirection.LEFT);
+			} else if (y > 2) {
+				changeDirection(BotDirection.RIGHT);			
+			}
+			
 		}
-		
-	};
 
+		@Override
+		public void onAccuracyChanged(Sensor arg0, int arg1) {
+			//dummy
+		}
+	};
 }
