@@ -1,3 +1,15 @@
+/**
+ * Part of the Sumi project - http://sudarmuthu.com/arduino/sumi
+ * 
+ * Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <sudar@sudarmuthu.com> wrote this file. As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer or coffee in return - Sudar
+ * ----------------------------------------------------------------------------
+ */
+
 package com.sudarmuthu.android.sumi.accelerometer;
 
 import android.app.Activity;
@@ -15,7 +27,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
- * Code based on Android accelerometer sensor tutorial by antoine vianey 
+ * The main Activity class
+ * 
+ * Code based on Android accelerometer sensor tutorial by Antoine Vianey
+ *  
  * @author Sudar (http://sudarmuthu.com)
  * 
  */

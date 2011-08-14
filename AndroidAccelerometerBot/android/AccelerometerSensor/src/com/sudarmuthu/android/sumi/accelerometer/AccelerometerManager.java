@@ -1,3 +1,15 @@
+/**
+ * Part of the Sumi project - http://sudarmuthu.com/arduino/sumi
+ * 
+ * Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <sudar@sudarmuthu.com> wrote this file. As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer or coffee in return - Sudar
+ * ----------------------------------------------------------------------------
+ */
+
 package com.sudarmuthu.android.sumi.accelerometer;
 
 import java.util.List;
@@ -9,16 +21,15 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
 /**
- * Android Accelerometer Sensor Manager Archetype
- * @author antoine vianey
- * under GPL v3 : http://www.gnu.org/licenses/gpl-3.0.html
+ * Android Accelerometer Sensor Manager Archetype. Based on the code by antoine vianey
+ * 
+ * @author Sudar (http://sudarmuthu.com)
+ *
  */
 public class AccelerometerManager {
 	
 	private static Sensor sensor;
 	private static SensorManager sensorManager;
-	// you could use an OrientationListener array instead
-	// if you plans to use more than one listener
 	private static PhoneAccelerometerListener listener;
 	
 	/** indicates whether or not Accelerometer Sensor is supported */

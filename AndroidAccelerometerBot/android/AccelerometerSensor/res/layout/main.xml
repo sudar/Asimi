@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 
+/**
+ * Part of the Sumi project - http://sudarmuthu.com/arduino/sumi
+ * 
+ * Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
+ * ==============================================================================
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <sudar@sudarmuthu.com> wrote this file. As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer or coffee in return - Sudar
+ * ==============================================================================
+ */
+ -->
+
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
