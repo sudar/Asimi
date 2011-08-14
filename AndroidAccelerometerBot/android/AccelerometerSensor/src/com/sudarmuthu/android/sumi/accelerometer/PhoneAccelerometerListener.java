@@ -1,8 +1,8 @@
 package com.sudarmuthu.android.sumi.accelerometer;
 
-public interface BotListener {
+public interface PhoneAccelerometerListener {
 
-	public void onBotDirectionChanged(BotDirection newDirection);
+	public void onPhoneDirectionChanged(BotDirection newDirection);
 }
 
 /**

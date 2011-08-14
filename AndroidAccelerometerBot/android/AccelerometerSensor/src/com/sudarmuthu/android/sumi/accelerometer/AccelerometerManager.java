@@ -19,7 +19,7 @@ public class AccelerometerManager {
 	private static SensorManager sensorManager;
 	// you could use an OrientationListener array instead
 	// if you plans to use more than one listener
-	private static BotListener listener;
+	private static PhoneAccelerometerListener listener;
 	
 	/** indicates whether or not Accelerometer Sensor is supported */
 	private static Boolean supported;
@@ -71,7 +71,7 @@ public class AccelerometerManager {
 	 * 			callback for accelerometer events
 	 */
 	public static void startListening(
-			BotListener accelerometerListener) {
+			PhoneAccelerometerListener accelerometerListener) {
 		sensorManager = (SensorManager) Accelerometer.getContext().
 				getSystemService(Context.SENSOR_SERVICE);
 		List<Sensor> sensors = sensorManager.getSensorList(
@@ -96,7 +96,7 @@ public class AccelerometerManager {
 	 * 			minimum interval between to shake events
 	 */
 	public static void startListening(
-			BotListener accelerometerListener, 
+			PhoneAccelerometerListener accelerometerListener, 
 			int threshold, int interval) {
 		startListening(accelerometerListener);
 	}
@@ -110,7 +110,7 @@ public class AccelerometerManager {
 		if (currentDirection != newDirection) {
 			currentDirection = newDirection;
     		// trigger change event
-    		listener.onBotDirectionChanged(newDirection);			
+    		listener.onPhoneDirectionChanged(newDirection);			
 		}
 	}
 
@@ -128,19 +128,20 @@ public class AccelerometerManager {
     		x = event.values[0];
 			y = event.values[1];
 			z = event.values[2];
-    		
+
+			if (y < -2) {
+				changeDirection(BotDirection.LEFT);
+				return;
+			} else if (y > 2) {
+				changeDirection(BotDirection.RIGHT);
+				return;
+			}
+
 			if (z < 2) {
 				changeDirection(BotDirection.DOWN);
 			} else if (z > 2) {
 				changeDirection(BotDirection.UP);
-			}
-			
-			if (y < -2) {
-				changeDirection(BotDirection.LEFT);
-			} else if (y > 2) {
-				changeDirection(BotDirection.RIGHT);			
-			}
-			
+			}			
 		}
 
 		@Override

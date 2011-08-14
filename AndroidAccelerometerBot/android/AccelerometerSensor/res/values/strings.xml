@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, Accelerometer!</string>
-    <string name="app_name">SampleAccelerometerSensor</string>
-    <string name="start">Start Bot</string>
+    <string name="app_name">Sumi Bot Controller</string>
+    <string name="startBot">Start Bot</string>
     <string name="left">Left</string>
     <string name="right">Right</string>
     <string name="up">Up</string>
     <string name="down">Down</string>
-    <string name="stop">Stop Bot</string>
+    <string name="stopBot">Stop Bot</string>
+    <string name="engageMissile">Engage Missile</string>
+    <string name="dismissMissile">Dismiss Missile</string>    
 </resources>
