@@ -37,7 +37,7 @@ public class AccelerometerManager {
 	/** indicates whether or not Accelerometer Sensor is running */
 	private static boolean running = false;
 	
-	private static BotDirection currentDirection = null; 
+	private static PhoneDirection currentDirection = null; 
 	
 	/**
 	 * Returns true if the manager is listening to orientation changes
@@ -117,7 +117,7 @@ public class AccelerometerManager {
 	 * 
 	 * @param newDirection
 	 */
-	private static void changeDirection(BotDirection newDirection) {
+	private static void changeDirection(PhoneDirection newDirection) {
 		if (currentDirection != newDirection) {
 			currentDirection = newDirection;
     		// trigger change event
@@ -141,17 +141,17 @@ public class AccelerometerManager {
 			z = event.values[2];
 
 			if (y < -2) {
-				changeDirection(BotDirection.LEFT);
+				changeDirection(PhoneDirection.LEFT);
 				return;
 			} else if (y > 2) {
-				changeDirection(BotDirection.RIGHT);
+				changeDirection(PhoneDirection.RIGHT);
 				return;
 			}
 
 			if (z < 2) {
-				changeDirection(BotDirection.DOWN);
+				changeDirection(PhoneDirection.DOWN);
 			} else if (z > 2) {
-				changeDirection(BotDirection.UP);
+				changeDirection(PhoneDirection.UP);
 			}			
 		}
 

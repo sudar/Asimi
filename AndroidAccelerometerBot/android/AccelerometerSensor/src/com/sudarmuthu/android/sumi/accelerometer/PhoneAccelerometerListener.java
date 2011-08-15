@@ -20,19 +20,19 @@ package com.sudarmuthu.android.sumi.accelerometer;
  */
 public interface PhoneAccelerometerListener {
 
-	public void onPhoneDirectionChanged(BotDirection newDirection);
+	public void onPhoneDirectionChanged(PhoneDirection newDirection);
 }
 
 /**
- * Different directions of the bot
+ * Different directions
  * 
  * @author Sudar (http://sudarmuthu.com)
  *
  */
-enum BotDirection {
-	LEFT,
+enum PhoneDirection {
+	LEFT, //0
 	RIGHT,
 	UP,
 	DOWN,
-	STOP
+	STOP // 4
 }

@@ -25,6 +25,7 @@ import android.view.GestureDetector.OnGestureListener;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import at.abraxas.amarino.Amarino;
 
 /**
  * The main Activity class
@@ -36,15 +37,20 @@ import android.widget.TextView;
  */
 public class Accelerometer extends Activity implements PhoneAccelerometerListener {
 
-	private String TAG = "Accelerometer";
+	private static final String TAG = "Accelerometer";
+	
+	// Amarino related
+	private static final String deviceAddress = "00:06:66:02:cc:fa"; // TODO: Make it configurable
+	private static final char amarinoBotFlag = 'b';
+	private static final char amarinoMissileFlag = 'm';	
 	
 	private TextView[] directionPointers = new TextView[4];
 
 	private boolean botStarted = false;
 	private boolean missileEngaged = false;
 
-	private BotDirection botDirection;
-	private BotDirection missileDirection;
+	private PhoneDirection botDirection;
+	private PhoneDirection missileDirection;
 	
 	private GestureDetector gestureScanner;
 	private static Context CONTEXT;
@@ -79,12 +85,12 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
 					// bot is running, stop it
 					botStarted = false;
 					button.setText(R.string.startBot);
-					changeBotDirection(BotDirection.STOP);	    		
+					changeBotDirection(PhoneDirection.STOP);	    		
 				} else {
 					// bot is not running, start it
 					botStarted = true;
 					button.setText(R.string.stopBot);
-					changeBotDirection(BotDirection.UP);										
+					changeBotDirection(PhoneDirection.UP);										
 				}
 			}
 		});
@@ -99,21 +105,40 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
 					// Missile is engaged, dismiss it
 					missileEngaged = false;
 					button.setText(R.string.engageMissile);
-					changeMissileDirection(BotDirection.STOP);
+					changeMissileDirection(PhoneDirection.STOP);
 				} else {
 					// Missile is not engaged, engage it
 					missileEngaged = true;
 					button.setText(R.string.dismissMissile);
-					changeMissileDirection(BotDirection.UP);
+					changeMissileDirection(PhoneDirection.UP);
 				}
 			}
 		});
         
+        // Handle Gestures
         gestureScanner = new GestureDetector(gestureListener);
         gestureScanner.setOnDoubleTapListener((OnDoubleTapListener) gestureListener);
     }
-        
+
     /**
+     * When the activity is started for the first time
+     */
+    @Override
+	protected void onStart() {
+		super.onStart();
+		Amarino.connect(this, deviceAddress);
+	}
+
+    /**
+     * When the activity is stopped
+     */
+	@Override
+	protected void onStop() {
+		super.onStop();
+		Amarino.disconnect(this, deviceAddress);
+	}
+
+	/**
      * When the activity is resumed
      */
 	@Override
@@ -137,6 +162,11 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
     	}
     }
 
+	/**
+	 * Return the context
+	 * 
+	 * @return
+	 */
 	public static Context getContext() {
 		return CONTEXT;
 	}
@@ -145,7 +175,7 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
 	 * @see com.sudarmuthu.android.sumi.accelerometer.BotListener#onBotDirectionChanged(com.sudarmuthu.android.sumi.accelerometer.BotDirection)
 	 */
 	@Override
-	public void onPhoneDirectionChanged(BotDirection newDirection) {
+	public void onPhoneDirectionChanged(PhoneDirection newDirection) {
 		if (missileEngaged && missileDirection != newDirection) {
 			changeMissileDirection(newDirection);
 		}
@@ -158,17 +188,18 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
     /**
 	 * @param newDirection
 	 */
-	private void changeMissileDirection(BotDirection newDirection) {
+	private void changeMissileDirection(PhoneDirection newDirection) {
 		Log.d(TAG, "Missile Direction changed to " + newDirection.toString());
 		
-		if (newDirection != BotDirection.STOP) {
+		if (newDirection != PhoneDirection.STOP) {
 			hideAllDirections();
 			directionPointers[newDirection.ordinal()].setVisibility(View.VISIBLE);			
 		} else {
 			hideAllDirections(true);
 		}
 
-		//TODO: Send request to Bot to change direction
+		//Send request to missile to change direction
+		Amarino.sendDataToArduino(this, deviceAddress, amarinoMissileFlag, new int[]{newDirection.ordinal()});
 		
 	}
 
@@ -176,17 +207,18 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
 	 * Change the direction of the bot
 	 * @param newDirection
 	 */
-	private void changeBotDirection(BotDirection newDirection) {
+	private void changeBotDirection(PhoneDirection newDirection) {
 		Log.d(TAG, "Bot Direction changed to " + newDirection.toString());
 		
-		if (newDirection != BotDirection.STOP) {
+		if (newDirection != PhoneDirection.STOP) {
 			hideAllDirections();
 			directionPointers[newDirection.ordinal()].setVisibility(View.VISIBLE);			
 		} else {
 			hideAllDirections(true);
 		}
 
-		//TODO: Send request to Bot to change direction
+		//Send request to Bot to change direction
+		Amarino.sendDataToArduino(this, deviceAddress, amarinoBotFlag, new int[]{newDirection.ordinal()});		
 	}
 
 	/**
@@ -195,8 +227,9 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
 	private void fireMissile() {
 		Log.d(TAG, "Missile Fired");
 		
-		missileDirection = BotDirection.STOP;
-		// TODO Send request to fire missile
+		missileDirection = PhoneDirection.STOP;
+		// Send request to fire missile
+		Amarino.sendDataToArduino(this, deviceAddress, amarinoMissileFlag, new int[]{5});
 	}		
 
 	/**
