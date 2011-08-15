@@ -1,5 +1,5 @@
 /**
-    WiiAcce;erp,eterBot - The bot that can be controlled by Wii Remote's accelerometer.
+    WiiAccelerometerBot - The bot that can be controlled by Wii Remote's accelerometer.
 
     Part of the Sumi project - http://sudarmuthu.com/arduino/sumi
 
