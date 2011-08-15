@@ -36,11 +36,12 @@ import at.abraxas.amarino.Amarino;
  * 
  */
 public class Accelerometer extends Activity implements PhoneAccelerometerListener {
-
+	
+	//	TODO: Add voice based control
 	private static final String TAG = "Accelerometer";
 	
 	// Amarino related
-	private static final String deviceAddress = "00:06:66:02:cc:fa"; // TODO: Make it configurable
+	private static final String deviceAddress = "00:06:66:02:CC:FA"; // TODO: Make it configurable
 	private static final char amarinoBotFlag = 'b';
 	private static final char amarinoMissileFlag = 'm';	
 	
@@ -129,15 +130,6 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
 		Amarino.connect(this, deviceAddress);
 	}
 
-    /**
-     * When the activity is stopped
-     */
-	@Override
-	protected void onStop() {
-		super.onStop();
-		Amarino.disconnect(this, deviceAddress);
-	}
-
 	/**
      * When the activity is resumed
      */
@@ -160,6 +152,7 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
     	if (AccelerometerManager.isListening()) {
     		AccelerometerManager.stopListening();
     	}
+		Amarino.disconnect(this, deviceAddress);    	
     }
 
 	/**
