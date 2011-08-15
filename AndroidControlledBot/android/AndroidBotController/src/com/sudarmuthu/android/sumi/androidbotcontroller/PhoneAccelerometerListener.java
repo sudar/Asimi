@@ -10,7 +10,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.sudarmuthu.android.sumi.accelerometer;
+package com.sudarmuthu.android.sumi.androidbotcontroller;
 
 /**
  * Interface to check if the phone has changed direction

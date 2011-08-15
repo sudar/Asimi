@@ -10,7 +10,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.sudarmuthu.android.sumi.accelerometer;
+package com.sudarmuthu.android.sumi.androidbotcontroller;
 
 import android.app.Activity;
 import android.content.Context;
