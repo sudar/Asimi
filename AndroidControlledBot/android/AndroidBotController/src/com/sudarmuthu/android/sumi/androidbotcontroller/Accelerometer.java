@@ -12,10 +12,15 @@
 
 package com.sudarmuthu.android.sumi.androidbotcontroller;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -116,6 +121,15 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
 			}
 		});
         
+        findViewById(R.id.voiceControl).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+		    	// when the button was clicked we start the recogniser
+		    	startActivityForResult(new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0);				
+			}
+		});
+        
         // Handle Gestures
         gestureScanner = new GestureDetector(gestureListener);
         gestureScanner.setOnDoubleTapListener((OnDoubleTapListener) gestureListener);
@@ -155,6 +169,25 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
 		Amarino.disconnect(this, deviceAddress);    	
     }
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if (resultCode == Activity.RESULT_OK && data != null) {
+			ArrayList<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+			
+			if (results != null){
+				for (String result : results){
+					Log.d(TAG, "recognized words:" + result);
+
+					if (result.contains("red") || result.contains("read")){
+						
+					}					
+				}
+			}
+		}
+	}
+	
 	/**
 	 * Return the context
 	 * 
@@ -223,6 +256,8 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
 		missileDirection = PhoneDirection.STOP;
 		// Send request to fire missile
 		Amarino.sendDataToArduino(this, deviceAddress, amarinoMissileFlag, new int[]{5});
+		// vibrate the phone
+		vibrate(100);
 	}		
 
 	/**
@@ -242,6 +277,16 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
 		for (int i = 0; i < directionPointers.length; i++) {
 			directionPointers[i].setVisibility(View.INVISIBLE);			
 		}
+	}
+	
+	/**
+	 * Vibrare the phone 
+	 * 
+	 * @param time
+	 */
+	private void vibrate(long time){
+		Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+		vibrator.vibrate(time);
 	}
 
 	/**

@@ -24,5 +24,6 @@
     <string name="down">Down</string>
     <string name="stopBot">Stop Bot</string>
     <string name="engageMissile">Engage Missile</string>
-    <string name="dismissMissile">Dismiss Missile</string>    
+    <string name="dismissMissile">Dismiss Missile</string>
+    <string name="voice">Voice Control</string>    
 </resources>
