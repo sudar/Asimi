@@ -1,7 +1,7 @@
 /**
     BasicBot - The basic working bot, using library.
 
-    Part of the Sumi project - http://sudarmuthu.com/arduino/sumi
+    Part of the Asimi project - http://sudarmuthu.com/arduino/asimi
 
    Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
 /*
@@ -12,14 +12,14 @@
  * this stuff is worth it, you can buy me a beer or coffee in return - Sudar
  * ----------------------------------------------------------------------------
  */
-#include <SumiBot.h>
+#include <AsimiBot.h>
 
-SumiBot sumiBot;
+AsimiBot asimiBot;
 void setup() {
 
-    // initialize Sumi bot
-    sumiBot.setEnablePins(2, 3);
-    sumiBot.setControlPins(4, 5, 6, 7);
+    // initialize Asimi bot
+    asimiBot.setEnablePins(2, 3);
+    asimiBot.setControlPins(4, 5, 6, 7);
 
     pinMode(13, OUTPUT);
 
@@ -27,13 +27,13 @@ void setup() {
 
 void loop() {
     digitalWrite(13, LOW);
-    sumiBot.moveForward();
+    asimiBot.moveForward();
 
     delay(10000);
 
     // change direction
     digitalWrite(13, HIGH);
-    sumiBot.moveBackward();
+    asimiBot.moveBackward();
     delay(10000);
 }
 

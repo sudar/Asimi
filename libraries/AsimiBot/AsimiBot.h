@@ -1,7 +1,7 @@
 /**
-    SumiBot - Bot Base code
+    AsimiBot - Bot Base code
 
-    Part of the Sumi project - http://sudarmuthu.com/arduino/sumi
+    Part of the Asimi project - http://sudarmuthu.com/arduino/sumi
 
    Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
@@ -15,17 +15,17 @@
  */
 
 //TODO: Add speed control using PWM
-#ifndef SumiBot_H
-#define SumiBot_H
+#ifndef AsimiBot_H
+#define AsimiBot_H
 
 #include <WProgram.h>
-class SumiBot {
+class AsimiBot {
 
 public:
 
     // constructor
-    SumiBot(); // empty constructor
-    SumiBot(byte el, byte e2, byte I1, byte I2, byte I3, byte I4, int delay); // full constructor
+    AsimiBot(); // empty constructor
+    AsimiBot(byte el, byte e2, byte I1, byte I2, byte I3, byte I4, int delay); // full constructor
 
     void setEnablePins(byte el, byte e2);
     void setControlPins(byte I1, byte I2, byte I3, byte I4);

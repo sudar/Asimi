@@ -1,7 +1,7 @@
 /**
     WiiButtonsBot - The basic bot that can be controlled by Wii Remote.
 
-    Part of the Sumi project - http://sudarmuthu.com/arduino/sumi
+    Part of the Asimi project - http://sudarmuthu.com/arduino/asimi
 
    Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
 

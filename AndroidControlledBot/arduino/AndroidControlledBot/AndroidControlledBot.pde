@@ -1,7 +1,7 @@
 /**
     AndroidControlledBot - The bot that can be controlled by Android phone
 
-    Part of the Sumi project - http://sudarmuthu.com/arduino/sumi
+    Part of the Asimi project - http://sudarmuthu.com/arduino/asimi
 
    Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
@@ -23,21 +23,21 @@
  *
  */
 
-#include <SumiBot.h>
+#include <AsimiBot.h>
 #include <MeetAndroid.h>
 
 // declare MeetAndroid so that you can call functions with it
 MeetAndroid meetAndroid;
-SumiBot sumiBot;
+AsimiBot asimiBot;
 
 void setup() {
     // use the baud rate your bluetooth module is configured to
     // not all baud rates are working well, i.e. ATMEGA168 works best with 57600
     Serial.begin(115200);
 
-    // initialize Sumi bot
-    sumiBot.setEnablePins(2, 3);
-    sumiBot.setControlPins(4, 5, 6, 7);
+    // initialize Asimi bot
+    asimiBot.setEnablePins(2, 3);
+    asimiBot.setControlPins(4, 5, 6, 7);
 
     // register callback functions, which will be called when an associated event occurs.
     meetAndroid.registerFunction(handleBot, 'b');
@@ -56,23 +56,23 @@ void handleBot(byte flag, byte num) {
 
     switch (direction[0]) {
         case 0: // LEFT
-            sumiBot.turnLeft();
+            asimiBot.turnLeft();
             break;
 
         case 1: // Right
-            sumiBot.turnRight();
+            asimiBot.turnRight();
             break;
 
         case 2:  // Up
-            sumiBot.moveForward();
+            asimiBot.moveForward();
             break;
 
         case 3:  // down
-            sumiBot.moveBackward();
+            asimiBot.moveBackward();
             break;
 
         case 4:  // stop
-            sumiBot.stop();
+            asimiBot.stop();
             break;
 
     }
