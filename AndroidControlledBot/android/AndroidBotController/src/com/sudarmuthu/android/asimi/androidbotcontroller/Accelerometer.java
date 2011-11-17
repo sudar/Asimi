@@ -1,5 +1,5 @@
 /**
- * Part of the Sumi project - http://sudarmuthu.com/arduino/sumi
+ * Part of the Asimi project - http://sudarmuthu.com/arduino/asimi
  * 
  * Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
  * ----------------------------------------------------------------------------
@@ -10,7 +10,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.sudarmuthu.android.sumi.androidbotcontroller;
+package com.sudarmuthu.android.asimi.androidbotcontroller;
 
 import java.util.ArrayList;
 
@@ -198,7 +198,7 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
 	}
 
 	/* (non-Javadoc)
-	 * @see com.sudarmuthu.android.sumi.accelerometer.BotListener#onBotDirectionChanged(com.sudarmuthu.android.sumi.accelerometer.BotDirection)
+	 * @see com.sudarmuthu.android.asimi.accelerometer.BotListener#onBotDirectionChanged(com.sudarmuthu.android.asimi.accelerometer.BotDirection)
 	 */
 	@Override
 	public void onPhoneDirectionChanged(PhoneDirection newDirection) {
