@@ -1,7 +1,7 @@
 /**
-    SumiBot - Bot Base code
+    AsimiBot - Bot Base code
 
-    Part of the Sumi project - http://sudarmuthu.com/arduino/sumi
+    Part of the Asimi project - http://sudarmuthu.com/arduino/asimi
 
     Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
@@ -14,12 +14,12 @@
  * ----------------------------------------------------------------------------
  */
 
-#include "SumiBot.h"
+#include "AsimiBot.h"
 
 /**
  * Full Constructor
  */
-SumiBot::SumiBot(byte e1, byte e2, byte I1, byte I2, byte I3, byte I4, int delay) {
+AsimiBot::AsimiBot(byte e1, byte e2, byte I1, byte I2, byte I3, byte I4, int delay) {
     setEnablePins(e1, e2);
     setControlPins(I1, I2, I3, I4);
     setDelay(delay);
@@ -28,7 +28,7 @@ SumiBot::SumiBot(byte e1, byte e2, byte I1, byte I2, byte I3, byte I4, int delay
 /**
  * Default Constructor
  */
-SumiBot::SumiBot() {
+AsimiBot::AsimiBot() {
     setEnablePins(1, 2);
     setControlPins(3, 4, 5, 6);
     setDelay(10);
@@ -37,7 +37,7 @@ SumiBot::SumiBot() {
 /**
  * Set Enable pins
  */
-void SumiBot::setEnablePins(byte e1, byte e2) {
+void AsimiBot::setEnablePins(byte e1, byte e2) {
     mE1 = e1;
     mE2 = e2;
 
@@ -48,7 +48,7 @@ void SumiBot::setEnablePins(byte e1, byte e2) {
 /**
  * Set Control pins
  */
-void SumiBot::setControlPins(byte I1, byte I2, byte I3, byte I4) {
+void AsimiBot::setControlPins(byte I1, byte I2, byte I3, byte I4) {
     mI1 = I1;
     mI2 = I2;
     mI3 = I3;
@@ -63,14 +63,14 @@ void SumiBot::setControlPins(byte I1, byte I2, byte I3, byte I4) {
 /**
  * Set delay value
  */
-void SumiBot::setDelay(int delay) {
+void AsimiBot::setDelay(int delay) {
     mDelay = delay;
 }
 
 /**
  * Start the bot and move forward
  */
-void SumiBot::start() {
+void AsimiBot::start() {
     digitalWrite(mE1, HIGH);
     digitalWrite(mE2, HIGH);
 
@@ -85,14 +85,14 @@ void SumiBot::start() {
 /**
  * Move forward
  */
-void SumiBot::moveForward() {
+void AsimiBot::moveForward() {
     start();
 }
 
 /**
  * Move backward
  */
-void SumiBot::moveBackward() {
+void AsimiBot::moveBackward() {
     digitalWrite(mE1, LOW);
     digitalWrite(mE2, LOW);
 
@@ -111,7 +111,7 @@ void SumiBot::moveBackward() {
 /**
  * Turn Left
  */
-void SumiBot::turnLeft() {
+void AsimiBot::turnLeft() {
     digitalWrite(mE1, LOW);
     digitalWrite(mE2, LOW);
 
@@ -130,7 +130,7 @@ void SumiBot::turnLeft() {
 /**
  * Turn Right
  */
-void SumiBot::turnRight() {
+void AsimiBot::turnRight() {
     digitalWrite(mE1, LOW);
     digitalWrite(mE2, LOW);
 
@@ -149,7 +149,7 @@ void SumiBot::turnRight() {
 /**
  * Stop Bot
  */
-void SumiBot::stop() {
+void AsimiBot::stop() {
     digitalWrite(mE1, LOW);
     digitalWrite(mE2, LOW);
 }
