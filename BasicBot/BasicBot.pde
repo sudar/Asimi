@@ -56,7 +56,7 @@ void loop() {
     digitalWrite(I3, HIGH);
     digitalWrite(I4, LOW);
 
-    delay(20000);
+    delay(10000);
 
     // change direction
 
@@ -73,5 +73,5 @@ void loop() {
     digitalWrite(I3, LOW);
     digitalWrite(I4, HIGH);
 
-    delay(20000);
+    delay(10000);
 }
