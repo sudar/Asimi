@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 
 /**
- * Part of the Sumi project - http://sudarmuthu.com/arduino/sumi
+ * Part of the Asimi project - http://sudarmuthu.com/arduino/asimi
  * 
  * Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
  *
@@ -16,7 +16,7 @@
 
 <resources>
     <string name="hello">Hello World, Accelerometer!</string>
-    <string name="app_name">Sumi Bot Controller</string>
+    <string name="app_name">Asimi Bot Controller</string>
     <string name="startBot">Start Bot</string>
     <string name="left">Left</string>
     <string name="right">Right</string>

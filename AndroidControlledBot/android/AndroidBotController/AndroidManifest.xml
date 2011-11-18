@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.sudarmuthu.android.sumi.androidbotcontroller"
+      package="com.sudarmuthu.android.asimi.androidbotcontroller"
       android:versionCode="1"
       android:versionName="1.0">
     <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name="com.sudarmuthu.android.sumi.androidbotcontroller.Accelerometer"
+        <activity android:name="Accelerometer"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
