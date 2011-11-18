@@ -42,7 +42,9 @@ import at.abraxas.amarino.Amarino;
  */
 public class Accelerometer extends Activity implements PhoneAccelerometerListener {
 	
-	//	TODO: Add voice based control
+	// TODO: Add voice based control
+	// TODO: Provide a menu option to connect to bluetooth device
+	
 	private static final String TAG = "Accelerometer";
 	
 	// Amarino related
@@ -142,6 +144,7 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
 	protected void onStart() {
 		super.onStart();
 		Amarino.connect(this, deviceAddress);
+		//TODO: Give the status of the connect to the user
 	}
 
 	/**
@@ -181,7 +184,7 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
 					Log.d(TAG, "recognized words:" + result);
 
 					if (result.contains("red") || result.contains("read")){
-						
+						// TODO: Complete speach recogniztion as well
 					}					
 				}
 			}
