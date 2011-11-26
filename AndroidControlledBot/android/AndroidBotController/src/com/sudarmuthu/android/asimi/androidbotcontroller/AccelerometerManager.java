@@ -21,7 +21,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
 /**
- * Android Accelerometer Sensor Manager Archetype. Based on the code by antoine vianey
+ * Android AndroidBotController Sensor Manager Archetype. Based on the code by antoine vianey
  * 
  * @author Sudar (http://sudarmuthu.com)
  *
@@ -32,9 +32,9 @@ public class AccelerometerManager {
 	private static SensorManager sensorManager;
 	private static PhoneAccelerometerListener listener;
 	
-	/** indicates whether or not Accelerometer Sensor is supported */
+	/** indicates whether or not AndroidBotController Sensor is supported */
 	private static Boolean supported;
-	/** indicates whether or not Accelerometer Sensor is running */
+	/** indicates whether or not AndroidBotController Sensor is running */
 	private static boolean running = false;
 	
 	private static PhoneDirection currentDirection = null; 
@@ -59,12 +59,12 @@ public class AccelerometerManager {
 	}
 	
 	/**
-	 * Returns true if at least one Accelerometer sensor is available
+	 * Returns true if at least one AndroidBotController sensor is available
 	 */
 	public static boolean isSupported() {
 		if (supported == null) {
-			if (Accelerometer.getContext() != null) {
-				sensorManager = (SensorManager) Accelerometer.getContext().
+			if (AndroidBotController.getContext() != null) {
+				sensorManager = (SensorManager) AndroidBotController.getContext().
 						getSystemService(Context.SENSOR_SERVICE);
 				List<Sensor> sensors = sensorManager.getSensorList(
 						Sensor.TYPE_ACCELEROMETER);
@@ -83,7 +83,7 @@ public class AccelerometerManager {
 	 */
 	public static void startListening(
 			PhoneAccelerometerListener accelerometerListener) {
-		sensorManager = (SensorManager) Accelerometer.getContext().
+		sensorManager = (SensorManager) AndroidBotController.getContext().
 				getSystemService(Context.SENSOR_SERVICE);
 		List<Sensor> sensors = sensorManager.getSensorList(
 				Sensor.TYPE_ACCELEROMETER);

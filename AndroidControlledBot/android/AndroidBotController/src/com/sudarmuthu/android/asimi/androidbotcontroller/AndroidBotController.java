@@ -40,12 +40,12 @@ import at.abraxas.amarino.Amarino;
  * @author Sudar (http://sudarmuthu.com)
  * 
  */
-public class Accelerometer extends Activity implements PhoneAccelerometerListener {
+public class AndroidBotController extends Activity implements PhoneAccelerometerListener {
 	
 	// TODO: Add voice based control
 	// TODO: Provide a menu option to connect to bluetooth device
 	
-	private static final String TAG = "Accelerometer";
+	private static final String TAG = "AndroidBotController";
 	
 	// Amarino related
 	private static final String deviceAddress = "00:06:66:02:CC:FA"; // TODO: Make it configurable
@@ -73,7 +73,7 @@ public class Accelerometer extends Activity implements PhoneAccelerometerListene
         // Start in Landscape mode.
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);// TODO make sure it is set properly for Tablets
         
-        // Start the Accelerometer
+        // Start the AndroidBotController
 		AccelerometerManager.startListening((PhoneAccelerometerListener) CONTEXT);
 		
         directionPointers[0] = (TextView) findViewById(R.id.left);
