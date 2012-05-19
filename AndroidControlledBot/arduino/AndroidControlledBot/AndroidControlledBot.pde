@@ -15,7 +15,7 @@
  */
 
 /**
- * Requres the following Arduino libraries
+ * Requires the following Arduino libraries
  *
  * MissileLauncher - http://sudarmuthu.com/arduino/missilelauncher
  * USB Host Shield Library v2.0 - https://github.com/felis/USB_Host_Shield_2.0
