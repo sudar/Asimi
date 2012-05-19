@@ -29,15 +29,24 @@ Explanation/documentation of this project can be found in its [homepage](http://
 
 Video of my demo of Asimi at [DroidCon](http://sudarmuthu.com/blog/building-robots-using-arduino-and-android-at-droidcon) can be found at http://www.youtube.com/watch?v=ZT9r6KhI32k
 
+## Talks
+
+I have talked about this project in the following conferences/events
+
+- [Droidcon](http://sudarmuthu.com/blog/building-robots-using-arduino-and-android-at-droidcon)
+- [Google Devfestx](sudarmuthu.com/blog/building-robots-using-android-and-arduino-in-google-devfestx)
+
 ## License
 
-The source code and schematics are released under "THE BEER-WARE" licence.
+The source code and schematics are released under "THE BEER-WARE" license.
 
 I would, however, consider it a great courtesy if you could email me and tell me about your project and how this code was used, just for my own continued personal gratification :)
 
-## Note
+You can also find other ways to [make me happy](http://sudarmuthu.com/if-you-wanna-thank-me), if you liked this project.
 
-More details about this project can be found at its [homepage](http://sudarmuthu.com/arduino/asimi).
+##Support 
+
+More details about this project and the support for this project can be found at its [homepage](http://sudarmuthu.com/arduino/asimi).
 
 ## Coming soon
 
