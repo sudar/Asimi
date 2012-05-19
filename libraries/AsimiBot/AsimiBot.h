@@ -18,7 +18,14 @@
 #ifndef AsimiBot_H
 #define AsimiBot_H
 
-#include <WProgram.h>
+// Compatibility for Arduino 1.0
+
+#if ARDUINO >= 100
+    #include "Arduino.h"
+#else    
+    #include "WProgram.h"
+#endif
+
 class AsimiBot {
 
 public:
