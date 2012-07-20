@@ -12,6 +12,11 @@
  * this stuff is worth it, you can buy me a beer or coffee in return - Sudar
  * ----------------------------------------------------------------------------
  */
+// Pin Change Int Library optimizations
+#define       NO_PORTC_PINCHANGES
+#define       NO_PORTD_PINCHANGES
+#define       NO_PIN_ARDUINO
+#define       NO_PIN_STATE
 
 #include <AsimiBot.h>
 #include <PinChangeInt.h> // For handling Pin change Interrupts
