@@ -4,7 +4,7 @@
     Part of the Asimi project - http://sudarmuthu.com/arduino/asimi
 
    Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
-/*
+
  * ----------------------------------------------------------------------------
  * "THE BEER-WARE LICENSE" (Revision 42):
  * <sudar@sudarmuthu.com> wrote this file. As long as you retain this notice you
