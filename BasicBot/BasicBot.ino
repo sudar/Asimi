@@ -13,13 +13,13 @@
  * ----------------------------------------------------------------------------
  */
 
-#define E1 2  // Enable Pin for motor 1
-#define E2 3  // Enable Pin for motor 2
+#define E1 5  // Enable Pin for motor 1
+#define E2 4  // Enable Pin for motor 2
 
-#define I1 4  // Control pin 1 for motor 1
-#define I2 5  // Control pin 2 for motor 1
-#define I3 6  // Control pin 1 for motor 2
-#define I4 7  // Control pin 2 for motor 2
+#define I1 3  // Control pin 1 for motor 1
+#define I2 2  // Control pin 2 for motor 1
+#define I3 1  // Control pin 1 for motor 2
+#define I4 0  // Control pin 2 for motor 2
 
 void setup() {
 

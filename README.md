@@ -11,9 +11,14 @@ I choose the name Asimi, in honor of [Isaac Asimov](http://en.wikipedia.org/wiki
 Each module is a separate Arduino Sketch which does a particular functionality. Right now the following modules are available.
 
 *   BasicBot - A very basic bot which can run.
+*   BasicBotUsingLibrary - A very basic bot, which is coded using the DCMotorBot library
 *   WiiBottonsBot - A bot that can be controlled using the buttons of the Wii remote.
 *   WiiAcclerometerBot - A bot that can be controlled using the accelerometer of the Wii remove.
 *   AndroidControlledBot - A bot that can be controlled using an Android phone
+
+## Libraries
+
+Almost all modules using the [DCMotorBot Arduino library](http://hardwarefun.com/projects/dc-motor-bot), that I created which allows you to control bots created with 2 DC Motors and H-Bridge IC like L293D.
 
 ## Installation
 

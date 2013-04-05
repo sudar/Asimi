@@ -1,9 +1,12 @@
 /**
-    WiiAccelerometerBot - The bot that can be controlled by Wii Remote's accelerometer.
+    WiiButtonsBot - The basic bot that can be controlled by Wii Remote.
+    Part of the Asimi project - http://hardwarefun.com/projects/asimi
 
-    Part of the Asimi project - http://sudarmuthu.com/arduino/asimi
+    Requires the following Arduino libraries
+    - WiiRemote - http://hardwarefun.com/projects/wiiremote
+    - USB Host Shield Library - https://github.com/felis/USB_Host_Shield
 
-   Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
+    Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
 /*
  * ----------------------------------------------------------------------------
@@ -14,13 +17,8 @@
  * ----------------------------------------------------------------------------
  */
 
-/**
- * Requres the following Arduino libraries
- *
- * WiiRemote - http://sudarmuthu.com/arduino/wiiremote
- * USB Host Shield Library - https://github.com/felis/USB_Host_Shield
- *
- */
+// TODO: Update the code to use the DCMotorBot library available at http://hardwarefun.com/projects/dc-motor-bot
+// TODO: Add schematics and photos
 
 #include <Usb.h>
 #include <WiiRemote.h>
@@ -73,14 +71,9 @@ void loop() {
 
 // Call back which is executed by wiiremote.task() method
 void myapp(void) {
-    double x, y, z;
 
-    x = wiiremote.Report.Accel.X;
-    y = wiiremote.Report.Accel.Y;
-    z = wiiremote.Report.Accel.Z;
-
-    if (x < 0 && x > -1) {
-        Serial.print("Turn Left");
+    if (wiiremote.buttonClicked(WIIREMOTE_LEFT)) {
+        Serial.println("Left Button clicked");
 
         digitalWrite(E1, LOW);
         digitalWrite(E2, LOW);
@@ -97,8 +90,8 @@ void myapp(void) {
 
     }
 
-    if (x > 0 && x < 1) {
-        Serial.print("Turn Right");
+    if (wiiremote.buttonClicked(WIIREMOTE_RIGHT)) {
+        Serial.println("Right Button clicked");
 
         digitalWrite(E1, LOW);
         digitalWrite(E2, LOW);
@@ -115,8 +108,8 @@ void myapp(void) {
 
     }
 
-    if (y > 0 && y < 1) {
-        Serial.print("Up");
+    if (wiiremote.buttonClicked(WIIREMOTE_UP)) {
+        Serial.println("Up Button clicked");
 
         digitalWrite(E1, LOW);
         digitalWrite(E2, LOW);
@@ -133,8 +126,8 @@ void myapp(void) {
 
     }
 
-    if (y < 0 && y > -1) {
-        Serial.print("Down");
+    if (wiiremote.buttonClicked(WIIREMOTE_DOWN)) {
+        Serial.println("Down Button clicked");
 
         digitalWrite(E1, LOW);
         digitalWrite(E2, LOW);

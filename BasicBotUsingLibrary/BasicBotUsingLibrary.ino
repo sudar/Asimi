@@ -1,7 +1,8 @@
 /**
     BasicBot - The basic working bot, using library.
 
-    Part of the Asimi project - http://sudarmuthu.com/arduino/asimi
+    Part of the Asimi project - http://hardwarefun.com/projects/asimi
+    Requires DCMotorBot Library available at http://hardwarefun.com/projects/dc-motor-bot
 
    Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
 /*
@@ -12,28 +13,27 @@
  * this stuff is worth it, you can buy me a beer or coffee in return - Sudar
  * ----------------------------------------------------------------------------
  */
-#include <AsimiBot.h>
+#include <DCMotorBot.h>
 
-AsimiBot asimiBot;
+DCMotorBot bot;
 void setup() {
 
     // initialize Asimi bot
-    asimiBot.setEnablePins(2, 3);
-    asimiBot.setControlPins(4, 5, 6, 7);
+    bot.setEnablePins(2, 3);
+    bot.setControlPins(4, 5, 6, 7);
 
     pinMode(13, OUTPUT);
-
 }
 
 void loop() {
     digitalWrite(13, LOW);
-    asimiBot.moveForward();
+    bot.moveForward();
 
     delay(10000);
 
     // change direction
     digitalWrite(13, HIGH);
-    asimiBot.moveBackward();
+    bot.moveBackward();
+
     delay(10000);
 }
-
