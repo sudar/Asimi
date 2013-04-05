@@ -1,9 +1,14 @@
 /**
     AndroidControlledBot - The bot that can be controlled by Android phone
+    Part of the Asimi project - http://hardwarefun.com/projects/asimi
 
-    Part of the Asimi project - http://sudarmuthu.com/arduino/asimi
+    Requires the following Arduino libraries
+    - MissileLauncher - http://hardwarefun.com/projects/missilelauncher
+    - USB Host Shield Library v2.0 - https://github.com/felis/USB_Host_Shield_2.0
+    - MeetAndroid (Amarino) - http://amarino.googlecode.com/svn/trunk/arduino_library/MeetAndroid
+    - DCMotorBot - http://hardwarefun.com/projects/dc-motor-bot
 
-   Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
+    Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
 /*
  * ----------------------------------------------------------------------------
@@ -14,21 +19,12 @@
  * ----------------------------------------------------------------------------
  */
 
-/**
- * Requires the following Arduino libraries
- *
- * MissileLauncher - http://sudarmuthu.com/arduino/missilelauncher
- * USB Host Shield Library v2.0 - https://github.com/felis/USB_Host_Shield_2.0
- * MeetAndroid (Amarino) - http://amarino.googlecode.com/svn/trunk/arduino_library/MeetAndroid
- *
- */
-
-#include <AsimiBot.h>
+#include <DCMotorBot.h>
 #include <MeetAndroid.h>
 
 // declare MeetAndroid so that you can call functions with it
 MeetAndroid meetAndroid;
-AsimiBot asimiBot;
+DCMotorBot bot;
 
 void setup() {
     // use the baud rate your bluetooth module is configured to
@@ -36,8 +32,8 @@ void setup() {
     Serial.begin(115200);
 
     // initialize Asimi bot
-    asimiBot.setEnablePins(2, 3);
-    asimiBot.setControlPins(4, 5, 6, 7);
+    bot.setEnablePins(2, 3);
+    bot.setControlPins(4, 5, 6, 7);
 
     // register callback functions, which will be called when an associated event occurs.
     meetAndroid.registerFunction(handleBot, 'b');
@@ -56,23 +52,23 @@ void handleBot(byte flag, byte num) {
 
     switch (direction[0]) {
         case 0: // LEFT
-            asimiBot.turnLeft();
+            bot.turnLeft();
             break;
 
         case 1: // Right
-            asimiBot.turnRight();
+            bot.turnRight();
             break;
 
         case 2:  // Up
-            asimiBot.moveForward();
+            bot.moveForward();
             break;
 
         case 3:  // down
-            asimiBot.moveBackward();
+            bot.moveBackward();
             break;
 
         case 4:  // stop
-            asimiBot.stop();
+            bot.stop();
             break;
 
     }
