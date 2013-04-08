@@ -8,13 +8,13 @@ I choose the name Asimi, in honor of [Isaac Asimov](http://en.wikipedia.org/wiki
 
 ## Modules
 
-Each module is a separate Arduino Sketch which does a particular functionality. Right now the following modules are available.
+Each module is a separate Arduino sketch(program) which does a particular functionality. Right now the following modules are available.
 
-*   BasicBot - A very basic bot which can run.
-*   BasicBotUsingLibrary - A very basic bot, which is coded using the DCMotorBot library
+*   BasicBot - A very basic bot which can run. It uses two DC motors.
+*   BasicBotUsingLibrary - A very basic bot, which is coded using the [DCMotorBot library](http://hardwarefun.com/projects/dc-motor-bot)
 *   WiiBottonsBot - A bot that can be controlled using the buttons of the Wii remote.
 *   WiiAcclerometerBot - A bot that can be controlled using the accelerometer of the Wii remove.
-*   AndroidControlledBot - A bot that can be controlled using an Android phone
+*   AndroidControlledBot - A bot that can be controlled using an Android phone.
 
 ## Libraries
 
@@ -22,7 +22,7 @@ Almost all modules using the [DCMotorBot Arduino library](http://hardwarefun.com
 
 ## Installation
 
-Download the project. Copy the folder inside the libraries folder into the Arduino Library folder. Open the projects in Arduino IDE and you should be able to compile them. 
+Download the project and copy the files into your Arduino sketch folder. Open the projects in Arduino IDE and you should be able to compile them. You might also want to install the dependency libraries in the `libraries` folder of Arduino.
 
 The Android project can be opened in Eclipse.
 
